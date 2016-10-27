@@ -1,7 +1,7 @@
-JS MergeXML class
+MergeXML [![npm version](https://badge.fury.io/js/mergexml.svg)](https://badge.fury.io/js/mergexml)
 ==================
 
-The class allows to merge the XML sources (files, strings, objects) into single DOM XML object.
+MergeXML merges the XML sources (files, strings, objects) into single DOM XML object.
 The merging is performed recursively on the node level adding new elements and replacing existing ones.
 The nodes with the same path/name are replaced/added sequentially and the modification can be controlled by the options.
 
@@ -11,6 +11,10 @@ For example, to join the configuration files of different subsystems depending o
 
 The usage
 -----
+
+**var MergeXML = require('mergexml');**
+
+MergeXML can included as a global script or with `npm install mergexml --save` and loaded as shown above.
 
 **var oMX = new MergeXML([opts]);**
 
@@ -46,7 +50,7 @@ You can get the XML result tree:
 
 The result object can be accessed also via *oMX.dom* property. The properties available:
 
-- **dom** - result XML DOM object
+- **dom** - result XML DOM object - **Note that in older IE browsers this is an ActiveX Object and not a standard XML Document!**
 - **nsp** - namespaces object (prefix:URI)
 - **count** - number of sources merged
 - **error** - error information
@@ -65,7 +69,9 @@ The following files are included:
 1. *mergexml.js* - the MergeXML class; supports IE, Firefox, Safari, Chrome, Opera;
 2. *example.html* - multi-selects the xml files and displays result;
 3. *example.js* - passes the xml data and returns result; **requires HTML5**;
-4. *test1.xml, test2.xml* - test data for the example.
+4. *test1.xml, test2.xml* - test data for the example;
+5. *package.json, bower.json* - package details;
+6. *test* - tests framework.
 
 The MergeXML is realized also in PHP (see [github.com]).
 
@@ -81,9 +87,15 @@ To run the tests:
 ChangeLog
 ---------
 
-09 June 2015
+June 2015
 
 - *mergexml.js*
- - the wrapper is added for a compatibility with the AMD/CommonJS (Martijn van de Rijdt)
+ - the wrapper is added for a compatibility with the AMD/CommonJS
+ 
+October 2016 (Martijn van de Rijdt)
+
+- *mergexml.js*
+ - cloning the namespaced attributes correctly
+ - mixing sources of undeclared encoding
  
   [github.com]: http://www.github.com/hareko/php-merge-xml
